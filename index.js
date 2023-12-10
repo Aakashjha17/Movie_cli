@@ -10,11 +10,11 @@ app.get('/:movieName', async (req,res) => {
         const responseString = `Title: ${Title}\nRating: ${imdbRating}\nReview: ${Review}`;
         res.send(responseString);
     } catch (error) {
-        res.status(500).send(chalk.red(`Error: ${error.message}`));
+        res.status(500).send(`Error: ${error.message}`);
     }
 });
 
 app.listen(port, () => {
-    console.log(chalk.green(`Server is running on http://localhost:${port}`));
+    console.log(`running `);
  });
 
