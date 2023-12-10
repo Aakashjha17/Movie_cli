@@ -1,21 +1,21 @@
 import chalk from 'chalk';
 import { getMovieRatingsAndReview } from './api.js';
-import { displayMovieDetails, displayMovieReviews }from './cli.js';
+import  express  from 'express';
 
-const fetchMovieDetails = async (movieName) => {
+const app = express();
+const port =  3000;
+app.get('/:movieName', async (req,res) => {
     try {
-        const movieDetails = await getMovieRatingsAndReview(movieName);
-
-        displayMovieDetails(movieDetails);
-        displayMovieReviews(movieDetails);
+        const movieDetails = await getMovieRatingsAndReview(req.params.movieName);
+        const { Title, imdbRating, Review } = movieDetails;
+        res.send(chalk.green(`\n${Title} (${imdbRating}/10)\n`))
+        res.send(chalk.yellow(`Review `), Review)
     } catch (error) {
-        console.error(chalk.red(`Error: ${error.message}`));
+        res.status(500).send(chalk.red(`Error: ${error.message}`));
     }
-};
-console.log("connected")
-const movieName = process.argv[2];
-if(movieName){
-    fetchMovieDetails(movieName);
-}
+});
 
+app.listen(port, () => {
+    console.log(chalk.green(`Server is running on http://localhost:${port}`));
+ });
 
