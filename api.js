@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 async function getMovieRatingsAndReview(movieName) {
 
     const findOptions = {
