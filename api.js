@@ -51,7 +51,7 @@ async function getMovieRatingsAndReview(movieName) {
             }
         }
         const reviewResponse = await axios.request(reviewOptions)
-        const Top3review = reviewResponse.data.reviews.slice(0, 3).map((review, index) => `review ${index + 1}: ${review.reviewText}`).join('\n')
+        const Top3review = reviewResponse.data.reviews.slice(0, 3).map((review, index) => `review ${index + 1}: ${review.reviewText}`).join('\n\n\n')
         return ({'Title':movieName,'imdbRating': ratingsResponse.data.rating,"Review":Top3review})
     } catch (error) {
         throw new Error(`Error fetching movie details: ${error.message}`);
