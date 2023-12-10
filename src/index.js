@@ -12,11 +12,9 @@ const fetchMovieDetails = async (movieName) => {
         console.error(chalk.red(`Error: ${error.message}`));
     }
 };
-
 const movieName = process.argv[2];
-
-if (!movieName) {
-    console.error(chalk.red('\nPlease provide a movie name as a command-line argument.\n'));
-} else {
+if(movieName){
     fetchMovieDetails(movieName);
 }
+
+
