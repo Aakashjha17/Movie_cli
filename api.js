@@ -18,11 +18,10 @@ async function getMovieRatingsAndReview(movieName) {
         const findResponse = await axios.request(findOptions);
 
         // Find the first result with titleType "movie"
-        const movieResult = findResponse.data.results.find(result => result.titleType === "movie");
-
-        if (!movieResult) {
+        if (!findResponse) {
             return (`No movie found with the name: ${movieName}`);
         }
+        const movieResult = findResponse.data.results.find(result => result.titleType === "movie")
 
         const movieId = movieResult.id.split("/title/")[1];
         const ratingsOptions = {
