@@ -12,7 +12,7 @@ const fetchMovieDetails = async (movieName) => {
         console.error(chalk.red(`Error: ${error.message}`));
     }
 };
-console.log(connected)
+console.log("connected")
 const movieName = process.argv[2];
 if(movieName){
     fetchMovieDetails(movieName);
