@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import { getMovieRatingsAndReview } from './api.js';
 import  express  from 'express';
 
@@ -8,8 +7,8 @@ app.get('/:movieName', async (req,res) => {
     try {
         const movieDetails = await getMovieRatingsAndReview(req.params.movieName);
         const { Title, imdbRating, Review } = movieDetails;
-        res.send(chalk.green(`\n${Title} (${imdbRating}/10)\n`))
-        res.send(chalk.yellow(`Review `), Review)
+        const responseString = `Title: ${Title}\nRating: ${imdbRating}\nReview: ${Review}`;
+        res.send(responseString);
     } catch (error) {
         res.status(500).send(chalk.red(`Error: ${error.message}`));
     }

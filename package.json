@@ -6,9 +6,6 @@
   "scripts": {
     "start": "node index.js"
   },
-  "bin": {
-    "movie-cli": "./index.js"
-  },
   "type": "module",
   "keywords": [],
   "author": "",
